@@ -206,20 +206,9 @@
 						<ReadScriptPacketParser />
 						<InternalPollInterval>10000</InternalPollInterval>
 						<CustomVariables>[{"Name":"URL","ValueTypeId":2,"NumericValue":0,"StringValue":"https://cdn.pixabay.com/download/audio/2024/07/11/audio_7e5021ff67.mp3?filename=doorbell-223669.mp3"}]</CustomVariables>
-						<ServiceAttributesScriptsPacketParser></ServiceAttributesScriptsPacketParser>
-						<ServiceActionsScriptsPacketParser></ServiceActionsScriptsPacketParser>
-						<ListenerScriptPacketParser>VAR response := TOSTRING(RECEIVEDBYTES);
-							VAR command := PARSEJSON(response, "heos.command", 1);
-							VAR result := PARSEJSON(response, "heos.result", 1);
-							VAR message := PARSEJSON(response, "heos.message", 1);
-
-							IF (command = "browse/play_stream")
-							IF (result = "fail")
-							ADDERROR("Error: " + message);
-							ELSE
-							VAR success := response;
-							END
-							END</ListenerScriptPacketParser>
+            <ServiceAttributesScriptsPacketParser>[]</ServiceAttributesScriptsPacketParser>
+            <ServiceActionsScriptsPacketParser>[]</ServiceActionsScriptsPacketParser>
+            <ListenerScriptPacketParser></ListenerScriptPacketParser>
 						<ShouldDoPeriodicWrite>False</ShouldDoPeriodicWrite>
 						<ReadButtonPressedStateScriptPacketParser></ReadButtonPressedStateScriptPacketParser>
 						<WriteButtonPressedStateScriptPacketParser>SENDDATA("heos://browse/play_stream?pid=" + playerId + "&amp;url=" + URL);</WriteButtonPressedStateScriptPacketParser>
